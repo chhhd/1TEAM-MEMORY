@@ -31,6 +31,44 @@ timestamp,target,endpoint,agent,operator,caller,hypothesis,payload,observation,n
 | `status` | `unconfirmed` \| `confirmed` \| `dead-end` |
 | `evidence_ref` | 스크린샷/로그 파일 경로, 없으면 `-` |
 
+## 어디에 기록하는가 — 자기 레포 + MEMORY 이중 기록
+
+각자(이나윤/임희영/박나현/박정근)는 평소 자기 전문 레포(`1TEAM-Recon-Subagent` 등)
+에서 agent를 돌리고, 그 레포의 `evidence/evidence.csv`에 먼저 기록한다 — 이건
+지금까지 해온 방식 그대로다.
+
+**추가로**, 실제 Phase 1~4 게임 중에는 같은 행을 **이 레포(`1TEAM-MEMORY`)의
+evidence.csv에도 append하고 push**한다. `1TEAM-MEMORY`가 팀 전체 결과가
+모이는 곳이기 때문에(README §링크·§작업 흐름 참고), 각자 레포에만 남기면
+팀원1이 Phase 3에서 5곳을 일일이 pull해서 취합해야 한다.
+
+```bash
+# 1TEAM-MEMORY 클론을 옆에 두고, 시도 하나 끝날 때마다:
+python scripts/append_evidence.py \
+  --target http://127.0.0.1:5055 --endpoint "/api/orders/<id>" --agent IDOR \
+  --operator 박나현 --caller manual \
+  --hypothesis "alice 토큰으로 bob의 주문 조회가 가능한가" \
+  --payload "GET /api/orders/102, Authorization: Bearer alice-token" \
+  --observation "200 OK, bob 소유 주문 데이터 반환 — 소유권 검증 없음" \
+  --new-info yes --status unconfirmed --evidence-ref -
+
+git add evidence/evidence.csv
+git commit -m "<이름>: <endpoint> <agent> 시도 N건 (MEMORY 동기화)"
+git push
+```
+
+(스크립트는 각자 레포에 있는 `scripts/append_evidence.py`와 완전히 동일하다 —
+같은 스키마이므로 커맨드도 그대로 재사용 가능.)
+
+## 오케스트레이터 전달용 요약 (Phase 3)
+
+팀원1은 체이닝 판단 전에 아래로 confirmed 행만 모아 오케스트레이터 세션에 전달한다:
+
+```bash
+python scripts/confirmed_summary.py               # 전체
+python scripts/confirmed_summary.py --agent IDOR   # 특정 agent만
+```
+
 ## 기록 규칙
 
 - **append-only**: 기존 행을 고치지 않는다. `unconfirmed` → `confirmed` 승격도
