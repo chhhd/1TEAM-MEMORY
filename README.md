@@ -44,7 +44,7 @@ ctf-agent-harness/
 
 ## 링크
 
-- Notion 상태판: _(링크 채워넣기)_
+- Notion 상태판: https://app.notion.com/p/3ba73ca863d880b9b13ddb4d07c91b9c
 - 대회/훈련 규정(Rules of Engagement): [target-info.md](target-info.md)
 - 이슈/작업 트래커: _(링크 채워넣기)_
 
