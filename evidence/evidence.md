@@ -18,7 +18,7 @@ timestamp,target,endpoint,agent,operator,caller,hypothesis,payload,observation,n
 
 | 컬럼 | 의미 |
 | --- | --- |
-| `timestamp` | 기록 시각, `HH:MM` (예: `14:32`). 날짜는 없음 — 여러 날짜에 걸치면 git 커밋 시각으로 보정 |
+| `timestamp` | 기록 시각, `YYYY-MM-DD HH:MM` (예: `2026-08-18 14:32`). 2026-08-18부터 날짜 포함이 기본(`append_evidence.py`가 자동 채움) — 그 이전 행은 `HH:MM`만 있는 옛 형식 그대로이며, 그런 행의 날짜가 필요하면 git 커밋 시각으로 보정 |
 | `target` | 테스트 대상 base URL |
 | `endpoint` | 구체적인 엔드포인트/파라미터 (예: `/search?q=`) |
 | `agent` | 사용한 전문 agent — `Recon` \| `Injection` \| `IDOR` \| `Auth` \| `CVE` (닫힌 어휘, 임의 추가 금지) |
