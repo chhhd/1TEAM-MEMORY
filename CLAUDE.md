@@ -40,11 +40,18 @@ Recon / Injection / Access Control / CVE 진단 절차를 에이전트·스킬�
 
 ## 공통 산출 형식
 
-모든 에이전트는 발견 사항을 다음 필드로 `evidence/evidence.csv`에 append 한다:
+모든 에이전트는 시도 하나마다 다음 필드로 `evidence/evidence.csv`에 append 한다.
+이 스키마는 `1TEAM-Main-Orchestration-Project-Infrastructure`의
+`evidence-logging` 스킬이 정의한 팀 공통 스키마와 동일하며, 5개 레포
+전원이 같은 형식을 쓴다 — 임의로 컬럼을 바꾸지 않는다.
 
 ```
-id, timestamp, agent, target, category, severity, summary, evidence_path, status
+timestamp, target, endpoint, agent, operator, caller, hypothesis, payload, observation, new_info, status, evidence_ref
 ```
 
-- `status` 는 `suspected`(의심) / `confirmed`(확인됨) / `false_positive` 중 하나
-- 원문 응답, 스크린샷 등 원자료는 `evidence/raw/` 하위에 저장하고 `evidence_path`로 참조 (해당 디렉터리는 `.gitignore` 처리 권장)
+- `agent`는 `Recon` / `Injection` / `IDOR` / `Auth` / `CVE` 중 하나 (닫힌 어휘)
+- `caller`는 `manual`(사람이 직접 실행) / `orchestrator`(오케스트레이터 지시로 실행)
+- `status`는 `unconfirmed`(1차 관찰) / `confirmed`(재현 2~3회 확인 후 승격) / `dead-end` 중 하나
+- **append-only**: 기존 행은 고치지 않는다 — 승격도 새 행 추가로 처리
+- 원문 응답, 스크린샷 등 원자료는 `evidence/raw/` 하위에 저장하고 `evidence_ref`로 참조 (해당 디렉터리는 `.gitignore` 처리)
+- 자세한 기록 절차는 [evidence/evidence.md](evidence/evidence.md) 참고
