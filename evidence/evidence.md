@@ -33,7 +33,7 @@ timestamp,target,endpoint,agent,operator,caller,hypothesis,payload,observation,n
 
 ## 어디에 기록하는가 — 자기 레포 + MEMORY 이중 기록
 
-각자(이나윤/임희영/박나현/박정근)는 평소 자기 전문 레포(`1TEAM-Recon-Subagent` 등)
+각자(이나윤/팀원3/팀원4/팀원5)는 평소 자기 전문 레포(`1TEAM-Recon-Subagent` 등)
 에서 agent를 돌리고, 그 레포의 `evidence/evidence.csv`에 먼저 기록한다 — 이건
 지금까지 해온 방식 그대로다.
 
@@ -46,7 +46,7 @@ evidence.csv에도 append하고 push**한다. `1TEAM-MEMORY`가 팀 전체 결�
 # 1TEAM-MEMORY 클론을 옆에 두고, 시도 하나 끝날 때마다:
 python scripts/append_evidence.py \
   --target http://127.0.0.1:5055 --endpoint "/api/orders/<id>" --agent IDOR \
-  --operator 박나현 --caller manual \
+  --operator 팀원4 --caller manual \
   --hypothesis "alice 토큰으로 bob의 주문 조회가 가능한가" \
   --payload "GET /api/orders/102, Authorization: Bearer alice-token" \
   --observation "200 OK, bob 소유 주문 데이터 반환 — 소유권 검증 없음" \

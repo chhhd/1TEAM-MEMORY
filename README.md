@@ -38,9 +38,9 @@ ctf-agent-harness/
 | --- | --- | --- | --- |
 | 이동건 | 프로젝트 규칙, 권한 설정 | `CLAUDE.md`, `settings.json` | 레포 루트, `.claude/` |
 | 이나윤 | Recon Agent 정의 + 절차 | `.md` | `.claude/agents/recon-agent.md`, `.claude/skills/recon/SKILL.md` |
-| 임희영 | Injection Agent 정의 + 진단 절차 | `.md` | `.claude/agents/injection-agent.md`, `.claude/skills/injection/SKILL.md` |
-| 박나현 | IDOR/Auth Agent 정의 + 체크리스트 | `.md` | `.claude/agents/access-control-agent.md`, `.claude/skills/access-control/SKILL.md` |
-| 박정근 | CVE Agent, Hooks 스크립트 | `.md` + `.py`/`.sh`/`.js`(Hook용) | `.claude/agents/cve-agent.md`, `.claude/hooks/` |
+| 팀원3 | Injection Agent 정의 + 진단 절차 | `.md` | `.claude/agents/injection-agent.md`, `.claude/skills/injection/SKILL.md` |
+| 팀원4 | IDOR/Auth Agent 정의 + 체크리스트 | `.md` | `.claude/agents/access-control-agent.md`, `.claude/skills/access-control/SKILL.md` |
+| 팀원5 | CVE Agent, Hooks 스크립트 | `.md` + `.py`/`.sh`/`.js`(Hook용) | `.claude/agents/cve-agent.md`, `.claude/hooks/` |
 
 ## 링크
 
@@ -60,8 +60,8 @@ ctf-agent-harness/
   즉시 `evidence/`(자기 레포 + 이 레포 둘 다, 아래 §evidence 참고)에 기록하고
   전원에게 공유한다.
 - **Phase 2 (병렬 탐색)**: Recon 결과를 보고 각자 전문 레포로 흩어진다 —
-  임희영은 `1TEAM-Injection-Subagent`, 박나현은
-  `1TEAM-IDOR-Authorization-Web-Logic-Subagent`. 박정근은 두 사람의 evidence를
+  팀원3은 `1TEAM-Injection-Subagent`, 팀원4은
+  `1TEAM-IDOR-Authorization-Web-Logic-Subagent`. 팀원5은 두 사람의 evidence를
   10분 주기로 보면서 `1TEAM-CVE-Analysis-Evaluation-System`으로 보조 검증한다.
   이동건은 이 구간엔 직접 agent를 돌리기보다 상태판 모니터링/중복 방지/
   20분 이상 막힌 사람 지원에 집중한다. 이나윤은 Recon 종료 후 새로 발견된
@@ -74,7 +74,7 @@ ctf-agent-harness/
 - **Phase 4 (완료)**: 체인이 확인되면 즉시 전원에게 브로드캐스트하고 재현
   절차를 기록한다. **브로드캐스트 채널은 아직 전용 채널이 없어 Notion 상태판
   코멘트로 대체한다**(위 §링크의 Notion 상태판) — 전용 채널이 정해지면 이
-  항목을 갱신한다. 이후 박정근이 전체 evidence 로그를 정리해서 "어떤 Agent가
+  항목을 갱신한다. 이후 팀원5이 전체 evidence 로그를 정리해서 "어떤 Agent가
   몇 번 만에 뭘 찾았는지" 실험 결과 요약본을 만든다(Baseline vs Harness 비교
   데이터로 사용).
 
@@ -91,6 +91,6 @@ ctf-agent-harness/
 | --- | --- |
 | [`1TEAM-Main-Orchestration-Project-Infrastructure`](https://github.com/chhhd/1TEAM-Main-Orchestration-Project-Infrastructure) | 팀원1 이동건 — 오케스트레이션/인프라 |
 | [`1TEAM-Recon-Subagent`](https://github.com/chhhd/1TEAM-Recon-Subagent) | 팀원2 이나윤 — Recon |
-| [`1TEAM-Injection-Subagent`](https://github.com/chhhd/1TEAM-Injection-Subagent) | 팀원3 임희영 — Injection |
-| [`1TEAM-IDOR-Authorization-Web-Logic-Subagent`](https://github.com/chhhd/1TEAM-IDOR-Authorization-Web-Logic-Subagent) | 팀원4 박나현 — IDOR/Auth |
-| [`1TEAM-CVE-Analysis-Evaluation-System`](https://github.com/chhhd/1TEAM-CVE-Analysis-Evaluation-System) | 팀원5 박정근 — CVE |
+| [`1TEAM-Injection-Subagent`](https://github.com/chhhd/1TEAM-Injection-Subagent) | 팀원3 팀원3 — Injection |
+| [`1TEAM-IDOR-Authorization-Web-Logic-Subagent`](https://github.com/chhhd/1TEAM-IDOR-Authorization-Web-Logic-Subagent) | 팀원4 팀원4 — IDOR/Auth |
+| [`1TEAM-CVE-Analysis-Evaluation-System`](https://github.com/chhhd/1TEAM-CVE-Analysis-Evaluation-System) | 팀원5 팀원5 — CVE |
