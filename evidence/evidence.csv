@@ -1,1 +1,1 @@
-id,timestamp,agent,target,category,severity,summary,evidence_path,status
+timestamp,target,endpoint,agent,operator,caller,hypothesis,payload,observation,new_info,status,evidence_ref
